@@ -1,0 +1,44 @@
+server:
+  port: 8080
+
+spring:
+  datasource:
+    #    driver-class-name: com.mysql.cj.jdbc.Driver
+    driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
+    url: jdbc:log4jdbc:mysql://workaround-mysql:3306/mysql?serverTimezone=GMT%2B8
+    username: root
+    password: secret
+    hikari:
+      maximum-pool-size: 20
+      minimum-idle: 5
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    show-sql: true
+    hibernate:
+      ddl-auto: update #update/create/validate
+  mvc:
+    async:
+      request-timeout: 60000
+
+DSRestConnection:
+  HTTP:
+    ConnectTimeout: 6000;
+
+log4jdbc:
+  spylogdelegator:
+    name: net.sf.log4jdbc.log.slf4j.Slf4jSpyLogDelegator
+
+logging:
+  #  level:
+  #    root: info
+  #    com:
+  #      tw:
+  #        test:
+  #          tast: debug
+  config: classpath:logback.xml
+#  pattern:
+#    console: "%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){faint} %clr(%5p) - %clr([%t]){faint} %X{log_id} %clr(%logger{39}){cyan} %clr(:){faint} %m%n%wEx"
+#  level.org.org.springframework.web: debug
+
+operation:
+  type: JPA

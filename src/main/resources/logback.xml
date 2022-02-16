@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" scanPeriod="60 seconds">
+
+    <contextName>logback</contextName>
+
+    <!--输出到控制台 ConsoleAppender-->
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>1-%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger - %msg%n</pattern>
+            <charset>GBK</charset>
+        </encoder>
+    </appender>
+    <!--指定最基础的日志输出级别-->
+    <root level="INFO">
+        <!--appender将会添加到这个loger-->
+        <appender-ref ref="STDOUT"/>
+    </root>
+    <logger name="com.tw.test.tast" level="debug"/>
+    <logger name="jdbc.connection" level="OFF"/>
+    <logger name="jdbc.resultset" level="OFF"/>
+    <logger name="jdbc.resultsettable" level="OFF"/>
+    <logger name="jdbc.audit" level="OFF"/>
+    <logger name="jdbc.sqltiming" level="INFO"/>
+    <logger name="jdbc.sqlonly" level="INFO"/>
+<!--    <logger name="org.hibernate.engine.QueryParameters" level="debug"/>-->
+</configuration>

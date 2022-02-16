@@ -1,0 +1,40 @@
+version: "1.0"
+
+
+services:
+  tast:
+     container_name: tast-demo
+     depends_on:
+       - db
+     build: .
+     ports:
+       - 8081:8080
+#     networks:
+#       - tastnewwork
+#     volumes:
+#       - .:/app
+     environment:
+       MYSQL_HOST: localhost
+       MYSQL_USER: root
+       MYSQL_PASSWORD: secret
+       MYSQL_DB: todos
+  mysql:
+    container_name: workaround-mysql
+    image: mysql:latest
+#    networks:
+#      - tastnewwork
+    ports:
+      - 3306:3306
+    volumes:
+      - todo-mysql-data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: secret
+      MYSQL_DATABASE: todos
+
+#networks:
+#  tastnewwork:
+#    external:
+#      name: todo-app
+
+volumes:
+  todo-mysql-data:

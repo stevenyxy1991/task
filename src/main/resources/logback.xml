@@ -15,7 +15,7 @@
         <!--appender将会添加到这个loger-->
         <appender-ref ref="STDOUT"/>
     </root>
-    <logger name="com.tw.test.tast" level="debug"/>
+    <logger name="com.tw.test.task" level="debug"/>
     <logger name="jdbc.connection" level="OFF"/>
     <logger name="jdbc.resultset" level="OFF"/>
     <logger name="jdbc.resultsettable" level="OFF"/>

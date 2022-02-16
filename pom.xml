@@ -53,7 +53,8 @@
     </dependencies>
 
     <build>
-<!--        <resources>-->
+        <!-- docker build 方式 -->
+        <!--        <resources>-->
 <!--            &lt;!&ndash; 控制资源文件的拷贝 &ndash;&gt;-->
 <!--            <resource>-->
 <!--                <directory>src/main/resources</directory>-->
@@ -85,7 +86,7 @@
 
 <!--        </plugins>-->
 
-        <!-- 设置源文件编码方式 -->
+        <!-- maven build 方式 -->
         <resources>
             <resource>
                 <directory>src/main/java</directory>

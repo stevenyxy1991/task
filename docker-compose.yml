@@ -9,10 +9,6 @@ services:
      build: .
      ports:
        - 8081:8080
-#     networks:
-#       - tastnewwork
-#     volumes:
-#       - .:/app
      environment:
        MYSQL_HOST: localhost
        MYSQL_USER: root
@@ -21,8 +17,6 @@ services:
   mysql:
     container_name: workaround-mysql
     image: mysql:latest
-#    networks:
-#      - tastnewwork
     ports:
       - 3306:3306
     volumes:
@@ -31,10 +25,6 @@ services:
       MYSQL_ROOT_PASSWORD: secret
       MYSQL_DATABASE: todos
 
-#networks:
-#  tastnewwork:
-#    external:
-#      name: todo-app
 
 volumes:
   todo-mysql-data:

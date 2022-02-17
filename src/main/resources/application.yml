@@ -4,6 +4,9 @@ server:
 spring:
   profiles:
     include: prod
+  jackson:
+    serialization:
+      FAIL_ON_EMPTY_BEANS: false
   mvc:
     async:
       request-timeout: 60000

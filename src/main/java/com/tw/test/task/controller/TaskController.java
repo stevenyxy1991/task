@@ -8,7 +8,11 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-
+/**
+* @description: Task API
+* @author: xinyu yang
+* @create: 2022/2/17
+**/
 @RestController
 @RequestMapping(value = "/task")
 public class TaskController {
@@ -30,7 +34,7 @@ public class TaskController {
     @DeleteMapping(value = "/id/{id}")
     public String delete(@PathVariable  Long id) {
         taskService.deleteById(id);
-        return "删除成功";
+        return "success";
     }
 
     @GetMapping(value = "/id/{id}")

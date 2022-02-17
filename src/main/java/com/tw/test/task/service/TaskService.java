@@ -30,14 +30,12 @@ public class TaskService implements BaseService<TaskEntityPo> {
     @Override
     public TaskEntityPo update(TaskEntityPo taskEntity) {
         operationFactory.getOperationService(OperationType.getType(operationType)).update(taskEntity);
-        return null;
-
+        return taskEntity;
     }
 
     @Override
-    public TaskEntityPo deleteById(Long id) {
+    public void deleteById(Long id) {
         operationFactory.getOperationService(OperationType.getType(operationType)).deleteById(id);
-        return null;
     }
 
     @Override

@@ -1,30 +1,31 @@
 package com.tw.test.task.entity;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
-@Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode(callSuper = true)
 @Table(name = "task_user")
 @Entity
 @Data
+@ToString
 public class UserEntityPo extends BaseEntity{
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private Long id;
+    public Long id;
 
     @Column(name = "name", nullable = false)
-    private String name;
+    public String name;
 
     @Column(name = "age")
-    private int age;
+    public int age;
 
     @Column(name = "timestemp")
-    private LocalDateTime timestemp;
+    public LocalDateTime timestemp;
 
 }

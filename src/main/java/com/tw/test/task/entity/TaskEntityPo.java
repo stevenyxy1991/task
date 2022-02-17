@@ -19,28 +19,28 @@ public class TaskEntityPo extends BaseEntity{
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    public Long id;
 
     @Column(name = "name", nullable = false)
-    private String name;
+    public String name;
 
     @Column(name = "startTime")
-    private LocalDateTime startTime;
+    public LocalDateTime startTime;
 
     @Column(name = "endTime")
-    private LocalDateTime endTime;
+    public LocalDateTime endTime;
 
     @Column(name = "descreption")
-    private String descreption;
+    public String descreption;
 
     @Column(name = "timestemp")
-    private LocalDateTime timestemp;
+    public LocalDateTime timestemp;
 
     @Column(name = "relation")
-    private String relation;
+    public String relation;
 
     @Column(name = "userId")
-    private String userId;
+    public String userId;
 
 
 }

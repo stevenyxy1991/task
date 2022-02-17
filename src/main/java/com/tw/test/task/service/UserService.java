@@ -1,7 +1,10 @@
 package com.tw.test.task.service;
 
 import com.tw.test.task.entity.UserEntityPo;
-import com.tw.test.task.reposery.UserRepositoryImpi;
+import com.tw.test.task.model.UserINModel;
+import com.tw.test.task.model.UserModel;
+import com.tw.test.task.model.UserOutModel;
+import com.tw.test.task.reposery.UserRepositoryImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -13,27 +16,24 @@ public class UserService implements BaseService<UserEntityPo> {
 
 
     @Autowired
-    private UserRepositoryImpi operationFactory;
+    private UserRepositoryImpl operationFactory;
 
-    @Value("${operation.type:JPA}")
-    private String operationType;
 
     @Override
     public UserEntityPo save(UserEntityPo userEntity) {
         operationFactory.save(userEntity);
-        return null;
+        return userEntity;
     }
 
     @Override
     public UserEntityPo update(UserEntityPo userEntity) {
         operationFactory.save(userEntity);
-        return null;
+        return userEntity;
     }
 
     @Override
-    public UserEntityPo deleteById(Long id) {
+    public void deleteById(Long id) {
         operationFactory.deleteUserById(id);
-        return null;
     }
 
     @Override
@@ -51,9 +51,16 @@ public class UserService implements BaseService<UserEntityPo> {
         return operationFactory.queryAll();
     }
 
-    public void deleteByUserId(Long id){
-        operationFactory.deleteUserById(id);
+    public void share(UserModel userModel){
+        operationFactory.share(userModel);
     }
 
+    public UserModel saveUserTask(UserModel userModel) {
+        operationFactory.saveUserTask(userModel);
+        return userModel;
+    }
 
+    public UserOutModel getByIdInfo(Long id) {
+        return operationFactory.getByIdInfo(id);
+    }
 }

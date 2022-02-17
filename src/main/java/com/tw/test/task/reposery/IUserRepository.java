@@ -8,8 +8,6 @@ public interface IUserRepository extends BaseRepository<UserEntityPo>{
 
     OperationType operationDef();
 
-//    void shoreTask(UserINModel userINModel);
-
     void deleteUserById(Long id);
 
 }

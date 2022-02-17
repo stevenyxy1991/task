@@ -4,6 +4,7 @@ import com.tw.test.task.entity.TaskEntity;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -14,12 +15,11 @@ import java.util.List;
 
 
 @SpringBootTest
-//@ExtendWith(MockitoExtension::class)
 @RunWith(SpringRunner.class)
 public class MemoryServiceTest {
 
-//    @InjectMocks
-//    public MemoryService memoryService;
+    @InjectMocks
+    public UserService userService;
 
     @Mock
     public List<TaskEntity> taskInit;

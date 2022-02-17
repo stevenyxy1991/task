@@ -12,7 +12,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Repository
-public class TaskRepositoryImpi implements ITaskRepository {
+public class TaskRepositoryImpl implements ITaskRepository {
+
+    private static final String SEMPOL = "%";
 
     @Autowired
     private ITaskDao taskDao;
@@ -29,6 +31,10 @@ public class TaskRepositoryImpi implements ITaskRepository {
     @Override
     public void save(TaskEntityPo taskEntityPo) {
         taskDao.save(taskEntityPo);
+    }
+
+    public void saveAll(List<TaskEntityPo> taskEntityPos) {
+        taskDao.saveAll(taskEntityPos);
     }
 
     @Override
@@ -48,11 +54,17 @@ public class TaskRepositoryImpi implements ITaskRepository {
 
     @Override
     public List<TaskEntityPo> queryAll(int start, int pageSize) {
-        Pageable pageable = PageRequest.of(start, pageSize);
-        return taskDao.findAll(pageable).get().collect(Collectors.toList());
+        Pageable pageable = PageRequest.of(start - 1, pageSize);
+        return taskDao.findAll(pageable).getContent();
     }
 
     protected void deleteByUserId(Long id){
-        taskDao.deleteAllByUserId(String.valueOf(id));
+        StringBuilder sb = new StringBuilder(SEMPOL);
+        taskDao.deleteByRelation(sb.append(id).append(SEMPOL).toString());
+    }
+
+    protected List<TaskEntityPo> findAllByRelation(Long id){
+        StringBuilder sb = new StringBuilder(SEMPOL);
+        return taskDao.findAllByRelationLike(sb.append(id).append(SEMPOL).toString());
     }
 }

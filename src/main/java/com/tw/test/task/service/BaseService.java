@@ -10,7 +10,7 @@ public interface BaseService<T extends BaseEntity> {
 
     T update(T t);
 
-    T deleteById(Long id);
+    void deleteById(Long id);
 
     T getById(Long id);
 

@@ -10,7 +10,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class UserINModel extends BaseEntity {
+public class UserModel extends BaseEntity {
 
     private UserEntityPo userEntity;
 

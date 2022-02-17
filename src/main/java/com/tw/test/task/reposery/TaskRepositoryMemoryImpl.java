@@ -6,9 +6,12 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 @Repository
-public class TaskRepositoryMemoryImpi implements ITaskRepository {
+public class TaskRepositoryMemoryImpl implements ITaskRepository {
 
     @Override
     public OperationType operationDef(){
@@ -17,7 +20,7 @@ public class TaskRepositoryMemoryImpi implements ITaskRepository {
 
     private final List<TaskEntityPo> taskInit;
 
-    protected TaskRepositoryMemoryImpi(List<TaskEntityPo> taskInit) {
+    protected TaskRepositoryMemoryImpl(List<TaskEntityPo> taskInit) {
         this.taskInit = taskInit;
     }
 
@@ -52,10 +55,8 @@ public class TaskRepositoryMemoryImpi implements ITaskRepository {
 
     @Override
     public TaskEntityPo getById(Long id) {
-        if (taskInit.stream().filter(t -> t.getId().compareTo(id) == 0).isParallel()){
-            return taskInit.stream().filter(t -> t.getId().compareTo(id) == 0).findFirst().get();
-        }
-        return null;
+        Map<Long,TaskEntityPo> map = taskInit.stream().collect(Collectors.toMap(TaskEntityPo::getId, TaskEntityPo -> TaskEntityPo));
+        return map.get(id);
     }
 
     @Override

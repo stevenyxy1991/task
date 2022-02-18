@@ -3,7 +3,7 @@ server:
 
 spring:
   profiles:
-    include: prod
+    include: dev
   jackson:
     serialization:
       FAIL_ON_EMPTY_BEANS: false
@@ -21,6 +21,3 @@ log4jdbc:
 
 logging:
   config: classpath:logback.xml
-
-operation:
-  type: JPA

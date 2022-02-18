@@ -2,6 +2,9 @@ package com.tw.test.task.service;
 
 import com.tw.test.task.entity.TaskEntityPo;
 import com.tw.test.task.factory.OperationFactory;
+import com.tw.test.task.model.Context;
+import com.tw.test.task.model.TaskShareModel;
+import com.tw.test.task.model.UserModel;
 import com.tw.test.task.util.OperationType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -16,41 +19,35 @@ public class TaskService implements BaseService<TaskEntityPo> {
     @Autowired
     private OperationFactory operationFactory;
 
-    @Value("${operation.type:JPA}")
-    private String operationType;
+    @Autowired
+    private Context context;
 
 
-    @Override
     public TaskEntityPo save(TaskEntityPo taskEntity) {
-        operationFactory.getOperationService(OperationType.getType(operationType)).save(taskEntity);
+        operationFactory.getOperationService(OperationType.getType(context.getContext().get("optionType").toString())).save(taskEntity);
         return taskEntity;
 
     }
 
-    @Override
     public TaskEntityPo update(TaskEntityPo taskEntity) {
-        operationFactory.getOperationService(OperationType.getType(operationType)).update(taskEntity);
+        operationFactory.getOperationService(OperationType.getType(context.getContext().get("optionType").toString())).update(taskEntity);
         return taskEntity;
     }
 
     @Override
     public void deleteById(Long id) {
-        operationFactory.getOperationService(OperationType.getType(operationType)).deleteById(id);
+        operationFactory.getOperationService(OperationType.getType(context.getContext().get("optionType").toString())).deleteById(id);
     }
 
-    @Override
     public TaskEntityPo getById(Long id) {
-        return operationFactory.getOperationService(OperationType.getType(operationType)).getById(id);
+        return operationFactory.getOperationService(OperationType.getType(context.getContext().get("optionType").toString())).getById(id);
     }
 
-    @Override
     public List<TaskEntityPo> queryAll() {
-        return operationFactory.getOperationService(OperationType.getType(operationType)).queryAll();
+        return operationFactory.getOperationService(OperationType.getType(context.getContext().get("optionType").toString())).queryAll();
     }
 
-    @Override
-    public List<TaskEntityPo> queryAll(int start, int pageSize) {
-        return operationFactory.getOperationService(OperationType.getType(operationType)).queryAll(start,pageSize);
+    public void share(TaskShareModel taskModel){
+        operationFactory.getOperationService(OperationType.getType(context.getContext().get("optionType").toString())).share(taskModel);
     }
-
 }

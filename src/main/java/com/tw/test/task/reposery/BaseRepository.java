@@ -6,17 +6,13 @@ import java.util.List;
 
 public interface BaseRepository<T extends BaseEntity> {
 
-    void save(T t);
+    public static final String SYMBOL ="#";
 
-    void update(T t);
+    public static final String PERCENT = "%";
 
     void deleteById(Long id);
 
-    T getById(Long id);
-
     List<T> queryAll();
-
-    List<T> queryAll(int start, int pageSize);
 
 
 }

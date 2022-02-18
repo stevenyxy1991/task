@@ -14,8 +14,6 @@ public class UserModel extends BaseEntity {
 
     private UserEntityPo userEntity;
 
-    private Long shareId;
-
     private List<TaskEntityPo> taskEntitys;
 
 }

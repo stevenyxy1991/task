@@ -2,8 +2,10 @@ package com.tw.test.task.controller;
 
 
 import com.tw.test.task.entity.TaskEntityPo;
+import com.tw.test.task.model.TaskShareModel;
 import com.tw.test.task.service.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,20 +17,21 @@ import java.util.List;
 **/
 @RestController
 @RequestMapping(value = "/task")
+@Component
 public class TaskController {
 
     @Autowired
     private TaskService taskService;
 
     @PostMapping(value = "/save")
-    public String save(@RequestBody TaskEntityPo user) {
-        taskService.save(user);
+    public String save(@RequestBody TaskEntityPo task) {
+        taskService.save(task);
         return "success";
     }
 
     @PutMapping(value = "/update")
-    public TaskEntityPo update(@RequestBody TaskEntityPo user) {
-        return taskService.update(user);
+    public TaskEntityPo update(@RequestBody TaskEntityPo task) {
+        return taskService.update(task);
     }
 
     @DeleteMapping(value = "/id/{id}")
@@ -43,7 +46,13 @@ public class TaskController {
     }
 
     @GetMapping(value = "/findAll")
-    public List<TaskEntityPo> findAll (int page, int pageSize) {
-        return taskService.queryAll(page,pageSize);
+    public List<TaskEntityPo> findAll () {
+        return taskService.queryAll();
+    }
+
+    @PostMapping(value = "/share/task")
+    public String share(@RequestBody TaskShareModel task) {
+        taskService.share(task);
+        return "success";
     }
 }

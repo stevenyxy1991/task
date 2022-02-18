@@ -1,14 +1,13 @@
 package com.tw.test.task.controller;
 
 import com.tw.test.task.entity.UserEntityPo;
-import com.tw.test.task.model.UserINModel;
 import com.tw.test.task.model.UserModel;
 import com.tw.test.task.model.UserOutModel;
 import com.tw.test.task.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;
 
-import javax.transaction.Transactional;
 import java.util.List;
 
 /**
@@ -18,7 +17,7 @@ import java.util.List;
 **/
 @RestController
 @RequestMapping(value = "/user")
-@Transactional
+@Component
 public class UserController {
 
     @Autowired
@@ -31,19 +30,19 @@ public class UserController {
     }
 
     @PutMapping(value = "/update")
-    public UserEntityPo update(@RequestBody UserEntityPo user) {
+    public UserEntityPo update(@RequestBody UserModel user) {
         return userService.update(user);
     }
 
     @DeleteMapping(value = "/id/{id}")
-    public String delete(@PathVariable  Long id) {
+    public String delete(@PathVariable Long id) {
         userService.deleteById(id);
         return "success";
     }
 
     @GetMapping(value = "/id/{id}")
     public UserOutModel findById (@PathVariable Long id) {
-        return userService.getByIdInfo(id);
+        return userService.getById(id);
     }
 
     @GetMapping(value = "/findAll")
@@ -51,9 +50,4 @@ public class UserController {
         return userService.queryAll();
     }
 
-    @PostMapping(value = "/share/task")
-    public String share(@RequestBody UserModel user) {
-        userService.share(user);
-        return "success";
-    }
 }
